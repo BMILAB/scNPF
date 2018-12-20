@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Similarity matrix Construction</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for scNPF.fus {scNPF}"><tr><td>scNPF.fus {scNPF}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Similarity matrix Construction</h2>
+
+<h3>Description</h3>
+
+<p>constructs a sample-similarity network
+for each propagated expression matrix and then
+integrates these networks into a single cell-cell
+similarity network based on a nonlinear combination
+method.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+scNPF.fus(data, K = 20, alpha = 0.5, T = 10)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>A list stored network-smoothed gene expression
+matrix with two length.</p>
+</td></tr>
+<tr valign="top"><td><code>K</code></td>
+<td>
+<p>Number of neighbors in K-nearest neighbors part of the algorithm.</p>
+</td></tr>
+<tr valign="top"><td><code>T</code></td>
+<td>
+<p>Number of iterations for the diffusion process.</p>
+</td></tr>
+<tr valign="top"><td><code>alpah</code></td>
+<td>
+<p>Variance for local model.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A consensus similarity matrix.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+##Loading example data
+load(system.file("data","yan.Rdata",package = "scNPF"))
+exp.data &lt;- yan$data[1:2000,]
+
+##Smoothed gene expression based on priori mode
+##Using String network.
+load(system.file("data","string.Rdata",package = "scNPF"))
+string.data &lt;- scNPF.pro(x=exp.data, network=string)
+
+##Smmothed gene expression based on context mode
+context.data&lt;- scNPF.pro(x=exp.data, network="context",qt.gene=0.9,qt.cell=0.9)
+
+##Construction a cell-by-cell similarity matrix.
+similarity &lt;- scNPF.fus(data=list(string=string.data,context=context.data))
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>scNPF</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

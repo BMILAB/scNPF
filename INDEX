@@ -1,0 +1,7 @@
+SNF                     Similarity Network Fusion
+affinityMatrix          Affinity matrix calculation
+context.mode            Building context mode
+plotHeatmap             Plot Heatmap
+scNPF.fus               Similarity matrix Construction
+scNPF.pro               Imputing dropout values of scRNA-seq data.
+smoothRWR               Imputing dropout values of scRNA-seq data.

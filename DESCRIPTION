@@ -1,0 +1,38 @@
+Package: scNPF
+Type: Package
+Title: Pre-processing of single-cell RNA-seq data
+Version: 0.1.0
+Authors@R: c(
+    person("Wenbin", "Ye", email = "mohuangx@gmail.com", 
+        role = c("aut", "cre")),
+    person("Xiaohui", "Wu", email = "xhuister@xmu.edu.cn", 
+    role = "aut")
+    )
+Maintainer: Wenbin Ye <nikou123456@163.com>
+Description: scNPF is a R package for pre-processing of sing
+		le-cell RNA-seq data by leveraging the context-specific
+		topology inherent in the given data and the network 
+		information from priori gene-gene interaction networks.
+		scNPF consists of two modules, including scNPF-propagation
+	  for imputing dropouts based on random walk with restart (RWR) 
+	  and scNPF-fucion for fusing multiple smoothed expression 
+	  matrices to a cell-cell similarity matrix. scNPF is highly 
+	  integrative and flexible in that the two modules are 
+	  independent but interconnected. scNPF can be used as a 
+	  general and flexible pre-processing step prior to 
+	  downstream analyses of scRNA-seq data for recovering 
+	  gene expression lost, correcting gene expression 
+	  measurements, and learning similarities between cells.
+URL: https://github.com/BMILAB/scNPF
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.1.0), igraph, WGCNA, foreach, doParallel, Matrix,
+        plyr, methods
+Suggests: gplots, RColorBrewer
+NeedsCompilation: no
+Packaged: 2018-1219 19:24:30 UTC; Administrator
+RoxygenNote: 6.1.0
+Author: Wenbin Ye [aut, cre],
+  Xiaohui Wu [aut]
+Built: R 3.5.0; ; 2018-12-20 16:05:50 UTC; windows

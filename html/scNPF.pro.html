@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Imputing dropout values of scRNA-seq data.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for scNPF.pro {scNPF}"><tr><td>scNPF.pro {scNPF}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Imputing dropout values of scRNA-seq data.</h2>
+
+<h3>Description</h3>
+
+<p>scNPF-propagation for imputing dropouts and correcting expression
+expression measurements.scNPF-propagation involves a network propagation
+process based on random walk with restart (RWR) on a given gene-gene
+interaction network to obtain a distribution for each node (gene),
+which captures its relevance to all other genes in the network.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+scNPF.pro(x, network, gamma = 0.5, qt.gene = 0.4, qt.cell = 0.5,
+  nThreads = 1)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>A expression count matrix. The rows correspond to genes and
+the columns correspond to cells.</p>
+</td></tr>
+<tr valign="top"><td><code>network</code></td>
+<td>
+<p>A adjacency matrix contation gene-gene interaction network.
+User can use priori mode or context mode. For priori mode,
+users can use publicly available molecular networks. In this
+package, we provided three human gene-gene interaction networks,
+including String, HumanNet and an integrated network. For context
+mode (default), a context-specific gene-gene network is constructed from
+the scRNA-seq data by WGCNA package.</p>
+</td></tr>
+<tr valign="top"><td><code>qt.gene</code></td>
+<td>
+<p>A numeric value between 0 and 1 (default: 0.4) indicating the
+top percent of expressed genes to be reserved for buliding a context-specific
+gene-gene network. Used only if <code>network</code> = &quot;context&quot;.</p>
+</td></tr>
+<tr valign="top"><td><code>qt.cell</code></td>
+<td>
+<p>A numeric value between 0 and 1 (default: 0.5) indicating the
+top percent of expressed cells to be reserved for buliding a context-specific
+gene-gene network. Used only if <code>network</code> = &quot;context&quot;.</p>
+</td></tr>
+<tr valign="top"><td><code>nThreads</code></td>
+<td>
+<p>The number of cores to use. Default is 1.</p>
+</td></tr>
+<tr valign="top"><td><code>gammma</code></td>
+<td>
+<p>A number between 0 and 1 (default: 0.5). <code>gamma</code> is the trade-off between prior
+information and network diffusion, governing the distance that a signal
+is allowed to diffuse through the network during smoothing.
+The specific value of <code>gamma</code> has little effect on the results of network
+propagation over a sizable range.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A network-smoothed gene expression matrix.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+#Loading example scRNA-seq data.
+load(system.file("data","yan.Rdata",package = "scNPF"))
+#Testing with all genes
+exp.data &lt;- yan$data
+#Or testing with paritial genes
+#exp.data &lt;- yan$data[1:2000,]
+
+##For context mode
+context.data &lt;- scNPF.pro(x=exp.data, network="context",nThreads=8)
+dim(context.data)
+dim(exp.data)
+context.data[1:5,1:3]
+exp.data[1:5,1:3]
+
+##For priori mode
+##Using String network
+load(system.file("data","string.Rdata",package = "scNPF"))
+string.data &lt;- scNPF.pro(x=exp.data, network=string,nThreads=8)
+
+##Using HumanNet network
+load(system.file("data","humannet.Rdata",package = "scNPF"))
+hm.data &lt;- scNPF.pro(x=exp.data,network=humannet,nThreads=8)
+
+##Using integrated network
+load(system.file("data","integrated.Rdata",package = "scNPF"))
+inter.data &lt;- scNPF.pro(x=exp.data,network=INet,nThreads=8)
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>scNPF</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>
