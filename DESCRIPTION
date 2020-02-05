@@ -3,7 +3,7 @@ Type: Package
 Title: Pre-processing of single-cell RNA-seq data
 Version: 0.1.0
 Authors@R: c(
-    person("Wenbin", "Ye", email = "mohuangx@gmail.com", 
+    person("Wenbin", "Ye", email = "nikou123456@163.com", 
         role = c("aut", "cre")),
     person("Xiaohui", "Wu", email = "xhuister@xmu.edu.cn", 
     role = "aut")
