@@ -43,7 +43,7 @@ Gene expression count matrix
 The input to scNPF is matrix of gene expression count. The rows correspond to genes and the columns correspond to cells. In this study, we will use the human embryonic stem cells data from [yan](http://dx.doi.org/10.1038/nsmb.2660) as example.
 ```
 ##Loading gene expression count matrix
-load(system.file("data","yan.data",package = "scNPF")
+load(system.file("data","yan.Rdata",package = "scNPF")
 exp.data <- yan$data
 dim(exp.data)
 ```
