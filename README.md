@@ -61,13 +61,13 @@ Section 1 scNPF-propagation
 ---------
 scNPF-propagation involves a network propagation process based on RWR on a given gene-gene interaction network to obtain a distribution for each node (gene), which captures its relevance to all other genes in the network. In this step, users can use priori mode or context mode.
 
-*Use priori mode
+* Use priori mode
 ```
 ##Using String network to smooth expression values.
 load(system.file("data","string.Rdata",package = "scNPF"))
 string.data <- scNPF.pro(x=exp.data, network=string,nThreads=8)
 ```
-*Use context mode
+* Use context mode
 ```
 context.data<- scNPF.pro(x=exp.data, network="context",nThreads=8)
 ```
