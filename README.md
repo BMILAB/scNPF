@@ -80,4 +80,6 @@ Section 2 scNPF-fusion
  ##Construction a cell-by-cell similarity matrix.
 similarity<-scNPF.fus(data=list(string=string.data,context=context.data))
  ```
-
+Citation
+---------
+If you are using scNPF, please cite: [Ye W, Ji G, Ye P, Long Y, Xiao X, Li S, Su Y and Wu X (2019) scNPF: an integrative framework assisted by network propagation and network fusion for preprocessing of single-cell RNA-seq data, BMC Genomics, 20, 347.](https://pubmed.ncbi.nlm.nih.gov/31068142/)
